@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bitsmash | Desarrollo de aplicaciones web</title>
+
+    <meta name="description" content="Bitsmash desarrolla aplicaciones web modernas, rápidas y a medida para empresas.">
+
+    <style>
+        :root {
+            --bg: #070b14;
+            --bg-secondary: #0d1322;
+            --card: #101827;
+            --text: #f5f7fb;
+            --muted: #9ba7bb;
+            --primary: #6c63ff;
+            --primary-light: #8d85ff;
+            --border: rgba(255, 255, 255, .08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont,
+                "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+
+            background: rgba(7, 11, 20, .78);
+            backdrop-filter: blur(16px);
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -.5px;
+        }
+
+        .logo-mark {
+            width: 34px;
+            height: 34px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 9px;
+
+            background: linear-gradient(135deg,
+                    var(--primary),
+                    #9b5cff);
+
+            color: white;
+            font-size: 17px;
+            font-weight: 900;
+
+            box-shadow:
+                0 8px 30px rgba(108, 99, 255, .3);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .nav-links a {
+            transition: color .2s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-button {
+            padding: 10px 17px;
+
+            border: 1px solid rgba(108, 99, 255, .5);
+            border-radius: 9px;
+
+            color: white !important;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+            overflow: hidden;
+
+            padding-top: 76px;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 650px;
+            height: 650px;
+
+            top: -220px;
+            right: -150px;
+
+            background: rgba(108, 99, 255, .16);
+
+            filter: blur(120px);
+
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            bottom: -250px;
+            left: -150px;
+
+            background: rgba(0, 180, 255, .08);
+
+            filter: blur(120px);
+
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 7px 13px;
+
+            border: 1px solid var(--border);
+            border-radius: 100px;
+
+            background: rgba(255, 255, 255, .025);
+
+            color: #b9c2d3;
+
+            font-size: 13px;
+
+            margin-bottom: 26px;
+        }
+
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #61e294;
+
+            box-shadow: 0 0 12px #61e294;
+        }
+
+        h1 {
+            font-size: clamp(48px, 7vw, 82px);
+
+            line-height: .98;
+
+            letter-spacing: -4px;
+
+            max-width: 900px;
+
+            margin-bottom: 28px;
+        }
+
+        h1 span {
+            background: linear-gradient(110deg,
+                    #ffffff 20%,
+                    #8d85ff 75%);
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .hero-description {
+            max-width: 680px;
+
+            color: var(--muted);
+
+            font-size: 19px;
+
+            line-height: 1.7;
+
+            margin-bottom: 38px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .button {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 14px 22px;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+            font-weight: 650;
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg,
+                    var(--primary),
+                    #8d5cff);
+
+            box-shadow:
+                0 12px 35px rgba(108, 99, 255, .25);
+        }
+
+        .button-secondary {
+            border: 1px solid var(--border);
+
+            background: rgba(255, 255, 255, .025);
+
+            color: #d9dfeb;
+        }
+
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section {
+            padding: 110px 0;
+        }
+
+        .section-header {
+            max-width: 680px;
+
+            margin-bottom: 55px;
+        }
+
+        .section-label {
+            color: var(--primary-light);
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 14px;
+        }
+
+        h2 {
+            font-size: clamp(34px, 5vw, 50px);
+
+            line-height: 1.05;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 18px;
+        }
+
+        .section-header p {
+            color: var(--muted);
+
+            font-size: 17px;
+        }
+
+
+        /* =========================
+           SERVICES
+        ========================= */
+
+        .services {
+            background: var(--bg-secondary);
+
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .service-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .service {
+            padding: 30px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            transition:
+                transform .25s ease,
+                border-color .25s ease;
+        }
+
+        .service:hover {
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(108, 99, 255, .35);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+
+            background:
+                rgba(108, 99, 255, .12);
+
+            color: #9b94ff;
+
+            font-size: 22px;
+
+            margin-bottom: 23px;
+        }
+
+        .service h3 {
+            font-size: 20px;
+
+            margin-bottom: 10px;
+        }
+
+        .service p {
+            color: var(--muted);
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           TECHNOLOGY
+        ========================= */
+
+        .tech-layout {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 80px;
+
+            align-items: center;
+        }
+
+        .tech-text p {
+            color: var(--muted);
+
+            font-size: 17px;
+
+            margin-bottom: 25px;
+        }
+
+        .tech-list {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+        }
+
+        .tech {
+            display: inline-block;
+
+            padding: 7px 11px;
+
+            border: 1px solid var(--border);
+
+            background:
+                rgba(255, 255, 255, .025);
+
+            border-radius: 8px;
+
+            color: #cbd3e1;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           CODE CARD
+        ========================= */
+
+        .code-card {
+            background: #090e19;
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, .3);
+        }
+
+        .code-header {
+            height: 43px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 0 15px;
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+        .code-dot {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #40495b;
+        }
+
+        pre {
+            padding: 25px;
+
+            overflow-x: auto;
+
+            color: #abb6ca;
+
+            font-family:
+                "SFMono-Regular",
+                Consolas,
+                "Liberation Mono",
+                monospace;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+        .code-keyword {
+            color: #9b8cff;
+        }
+
+        .code-string {
+            color: #75d5a2;
+        }
+
+        .code-function {
+            color: #62b9ff;
+        }
+
+
+        /* =========================
+           PROJECTS
+        ========================= */
+
+        .projects {
+            background: var(--bg-secondary);
+
+            border-top:
+                1px solid var(--border);
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+        .project-tags {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            margin-top: 22px;
+        }
+
+        .project-link {
+            display: inline-flex;
+
+            margin-top: 22px;
+
+            color: #a49eff;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        .project-link:hover {
+            color: white;
+        }
+
+
+        /* =========================
+           PROCESS
+        ========================= */
+
+        .process-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .step {
+            position: relative;
+
+            padding: 28px 20px;
+        }
+
+        .step-number {
+            font-size: 42px;
+
+            font-weight: 800;
+
+            color:
+                rgba(255, 255, 255, .08);
+
+            margin-bottom: 8px;
+        }
+
+        .step h3 {
+            margin-bottom: 9px;
+
+            font-size: 18px;
+        }
+
+        .step p {
+            color: var(--muted);
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           CV
+        ========================= */
+
+        .cv-section {
+            background: var(--bg-secondary);
+
+            border-top:
+                1px solid var(--border);
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+        .cv-text p {
+            color: var(--muted);
+
+            font-size: 17px;
+
+            margin-bottom: 22px;
+        }
+
+        .cv-skills {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 9px;
+
+            margin: 25px 0 30px;
+        }
+
+        .cv-skill {
+            padding: 8px 13px;
+
+            background:
+                rgba(255, 255, 255, .025);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+            color: #cbd3e1;
+        }
+
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .cta {
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .cta-box {
+            padding: 75px 30px;
+
+            border:
+                1px solid rgba(108, 99, 255, .2);
+
+            border-radius: 22px;
+
+            background:
+                radial-gradient(circle at 50% 0%,
+                    rgba(108, 99, 255, .14),
+                    transparent 55%),
+                var(--card);
+        }
+
+        .cta h2 {
+            max-width: 700px;
+
+            margin:
+                0 auto 20px;
+        }
+
+        .cta p {
+            color: var(--muted);
+
+            max-width: 600px;
+
+            margin:
+                0 auto 30px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 35px 0;
+
+            border-top:
+                1px solid var(--border);
+
+            color: #707b90;
+
+            font-size: 13px;
+        }
+
+        .footer-content {
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        .footer-logo {
+            color: #dfe4ed;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+        }
+
+
+        @media (max-width: 850px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-layout {
+                grid-template-columns: 1fr;
+
+                gap: 45px;
+            }
+
+            .process-grid {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+            h1 {
+                letter-spacing: -2.5px;
+            }
+        }
+
+
+        @media (max-width: 550px) {
+
+            .container {
+                width:
+                    min(100% - 28px, 1120px);
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .hero {
+                min-height: 90vh;
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+
+                align-items:
+                    flex-start;
+            }
+
+            .cta-box {
+                padding: 55px 20px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+     HEADER
+========================= -->
+
+    <header>
+
+        <div class="container">
+
+            <nav>
+
+                <a href="#" class="logo">
+
+                    <span class="logo-mark">
+                        B
+                    </span>
+
+                    Bitsmash
+
+                </a>
+
+
+                <div class="nav-links">
+
+                    <a href="#servicios">
+                        Servicios
+                    </a>
+
+                    <a href="#tecnologia">
+                        Tecnología
+                    </a>
+
+                    <a href="#proceso">
+                        Proceso
+                    </a>
+
+                    <a href="#proyectos">
+                        Proyectos
+                    </a>
+
+                    <a href="#cv">
+                        CV
+                    </a>
+
+                    <a href="#contacto" class="nav-button">
+                        Hablemos
+                    </a>
+
+                </div>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <main>
+
+
+        <!-- =========================
+     HERO
+========================= -->
+
+        <section class="hero">
+
+            <div class="container">
+
+                <div class="hero-content">
+
+                    <div class="eyebrow">
+
+                        <span class="eyebrow-dot"></span>
+
+                        Desarrollo de software a medida
+
+                    </div>
+
+
+                    <h1>
+
+                        Convertimos ideas en
+
+                        <span>
+                            aplicaciones reales.
+                        </span>
+
+                    </h1>
+
+
+                    <p class="hero-description">
+
+                        En Bitsmash diseñamos y desarrollamos
+                        aplicaciones web modernas, rápidas y
+                        escalables para empresas que quieren
+                        digitalizar sus procesos y crecer.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a href="#contacto" class="button button-primary">
+
+                            Cuéntanos tu proyecto →
+
+                        </a>
+
+
+                        <a href="#servicios" class="button button-secondary">
+
+                            Descubrir Bitsmash
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+     SERVICIOS
+========================= -->
+
+        <section id="servicios" class="services">
+
+            <div class="container">
+
+
+                <div class="section-header">
+
+                    <div class="section-label">
+                        Qué hacemos
+                    </div>
+
+
+                    <h2>
+                        Software diseñado para tu negocio.
+                    </h2>
+
+
+                    <p>
+
+                        No creemos en soluciones genéricas.
+                        Desarrollamos herramientas adaptadas
+                        a las necesidades reales de cada proyecto.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="service-grid">
+
+
+                    <article class="service">
+
+                        <div class="service-icon">
+                            ⌘
+                        </div>
+
+                        <h3>
+                            Aplicaciones web
+                        </h3>
+
+                        <p>
+
+                            Aplicaciones web a medida para gestionar
+                            clientes, reservas, procesos internos,
+                            inventarios, administración y mucho más.
+
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="service">
+
+                        <div class="service-icon">
+                            ⚡
+                        </div>
+
+                        <h3>
+                            Digitalización
+                        </h3>
+
+                        <p>
+
+                            Transformamos procesos manuales y
+                            repetitivos en herramientas digitales
+                            que ahorran tiempo y reducen errores.
+
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="service">
+
+                        <div class="service-icon">
+                            ◈
+                        </div>
+
+                        <h3>
+                            Integraciones
+                        </h3>
+
+                        <p>
+
+                            Conectamos tus aplicaciones con bases
+                            de datos, APIs y servicios externos
+                            para que toda tu información trabaje
+                            conjuntamente.
+
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="service">
+
+                        <div class="service-icon">
+                            ▣
+                        </div>
+
+                        <h3>
+                            Paneles de gestión
+                        </h3>
+
+                        <p>
+
+                            Dashboards y backoffices intuitivos
+                            para que puedas controlar tu negocio
+                            desde cualquier dispositivo.
+
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="service">
+
+                        <div class="service-icon">
+                            ↗
+                        </div>
+
+                        <h3>
+                            Optimización
+                        </h3>
+
+                        <p>
+
+                            Mejoramos aplicaciones existentes,
+                            optimizando su rendimiento, estructura
+                            y experiencia de usuario.
+
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="service">
+
+                        <div class="service-icon">
+                            ∞
+                        </div>
+
+                        <h3>
+                            Soluciones escalables
+                        </h3>
+
+                        <p>
+
+                            Construimos aplicaciones preparadas
+                            para crecer junto a tu empresa y
+                            adaptarse a nuevas necesidades.
+
+                        </p>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+     TECNOLOGÍA
+========================= -->
+
+        <section id="tecnologia">
+
+            <div class="container">
+
+
+                <div class="tech-layout">
+
+
+                    <div class="tech-text">
+
+                        <div class="section-label">
+                            Tecnología
+                        </div>
+
+
+                        <h2>
+                            Tecnología al servicio del proyecto.
+                        </h2>
+
+
+                        <p>
+
+                            Utilizamos tecnologías modernas y
+                            herramientas consolidadas para construir
+                            aplicaciones fiables, mantenibles y
+                            preparadas para producción.
+
+                        </p>
+
+
+                        <div class="tech-list">
+
+                            <span class="tech">
+                                Angular
+                            </span>
+
+                            <span class="tech">
+                                PHP
+                            </span>
+
+                            <span class="tech">
+                                Slim
+                            </span>
+
+                            <span class="tech">
+                                MariaDB
+                            </span>
+
+                            <span class="tech">
+                                Docker
+                            </span>
+
+                            <span class="tech">
+                                REST API
+                            </span>
+
+                            <span class="tech">
+                                JavaScript
+                            </span>
+
+                            <span class="tech">
+                                HTML / CSS
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="code-card">
+
+                        <div class="code-header">
+
+                            <span class="code-dot"></span>
+                            <span class="code-dot"></span>
+                            <span class="code-dot"></span>
+
+                        </div>
+
+
+                        <pre><span class="code-keyword">const</span> project = {
+    <span class="code-keyword">company</span>: <span class="code-string">"Bitsmash"</span>,
+
+    <span class="code-keyword">focus</span>: [
+        <span class="code-string">"Web Applications"</span>,
+        <span class="code-string">"Automation"</span>,
+        <span class="code-string">"Digitalization"</span>
+    ],
+
+    <span class="code-keyword">approach</span>: <span class="code-string">"Custom"</span>,
+
+    <span class="code-keyword">quality</span>: <span class="code-string">"Production Ready"</span>,
+
+    <span class="code-function">build</span>() {
+        <span class="code-keyword">return</span>
+        <span class="code-string">"Your idea → Reality"</span>;
+    }
+};</pre>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+     PROYECTOS
+========================= -->
+
+        <section id="proyectos" class="projects">
+
+            <div class="container">
+
+
+                <div class="section-header">
+
+                    <div class="section-label">
+                        Proyectos
+                    </div>
+
+
+                    <h2>
+                        Cosas que hemos construido.
+                    </h2>
+
+
+                    <p>
+
+                        Algunos de los proyectos y soluciones
+                        desarrollados por Bitsmash.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="service-grid">
+
+
+                    <!-- PROYECTO 1 -->
+
+                    <article class="service">
+
+                        <div class="service-icon">
+                            📅
+                        </div>
+
+
+                        <h3>
+                            Plataforma de reservas
+                        </h3>
+
+
+                        <p>
+
+                            Aplicación web para la gestión de
+                            citas, clientes, servicios, trabajadores
+                            y disponibilidad.
+
+                        </p>
+
+
+                        <div class="project-tags">
+
+                            <span class="tech">
+                                Angular
+                            </span>
+
+                            <span class="tech">
+                                PHP
+                            </span>
+
+                            <span class="tech">
+                                Slim
+                            </span>
+
+                            <span class="tech">
+                                MariaDB
+                            </span>
+
+                            <span class="tech">
+                                Docker
+                            </span>
+
+                        </div>
+
+
+                        <a href="/nails/front/" class="project-link">
+
+                            Ver proyecto →
+
+                        </a>
+
+                    </article>
+
+
+
+                    <!-- PROYECTO 2 -->
+
+                    <article class="service">
+
+                        <div class="service-icon">
+                            ▣
+                        </div>
+
+
+                        <h3>
+                            Gestión empresarial
+                        </h3>
+
+
+                        <p>
+
+                            Herramientas web personalizadas para
+                            automatizar y centralizar procesos
+                            internos de una empresa.
+
+                        </p>
+
+
+                        <div class="project-tags">
+
+                            <span class="tech">
+                                Angular
+                            </span>
+
+                            <span class="tech">
+                                REST API
+                            </span>
+
+                            <span class="tech">
+                                Docker
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- PROYECTO 3 -->
+
+                    <article class="service">
+
+                        <div class="service-icon">
+                            ⚙
+                        </div>
+
+
+                        <h3>
+                            Soluciones a medida
+                        </h3>
+
+
+                        <p>
+
+                            Desarrollo de aplicaciones adaptadas
+                            a necesidades concretas que no pueden
+                            resolverse con software estándar.
+
+                        </p>
+
+
+                        <div class="project-tags">
+
+                            <span class="tech">
+                                Web
+                            </span>
+
+                            <span class="tech">
+                                API
+                            </span>
+
+                            <span class="tech">
+                                Cloud
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+     PROCESO
+========================= -->
+
+        <section id="proceso">
+
+            <div class="container">
+
+
+                <div class="section-header">
+
+                    <div class="section-label">
+                        Cómo trabajamos
+                    </div>
+
+
+                    <h2>
+                        De la idea al producto.
+                    </h2>
+
+
+                    <p>
+
+                        Un proceso sencillo, transparente y
+                        orientado a conseguir resultados.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="process-grid">
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Analizamos
+                        </h3>
+
+                        <p>
+
+                            Entendemos tu negocio, tus necesidades
+                            y el problema que queremos resolver.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Diseñamos
+                        </h3>
+
+                        <p>
+
+                            Definimos la estructura, funcionalidades
+                            y experiencia que tendrá la aplicación.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Desarrollamos
+                        </h3>
+
+                        <p>
+
+                            Construimos la aplicación utilizando
+                            tecnologías modernas y buenas prácticas.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            04
+                        </div>
+
+                        <h3>
+                            Lanzamos
+                        </h3>
+
+                        <p>
+
+                            Ponemos el proyecto en producción y
+                            seguimos evolucionándolo contigo.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+     CV
+========================= -->
+
+        <section id="cv" class="cv-section">
+
+            <div class="container">
+
+
+                <div class="tech-layout">
+
+
+                    <div class="cv-text">
+
+                        <div class="section-label">
+                            CV
+                        </div>
+
+
+                        <h2>
+                            Experiencia y trayectoria.
+                        </h2>
+
+
+                        <p>
+
+                            Desarrollo de software, arquitectura
+                            de aplicaciones web y creación de
+                            soluciones digitales a medida.
+
+                        </p>
+
+
+                        <p>
+
+                            Con experiencia en el desarrollo de
+                            aplicaciones completas, desde la
+                            arquitectura y las bases de datos
+                            hasta el frontend y el despliegue.
+
+                        </p>
+
+
+                        <div class="cv-skills">
+
+                            <span class="cv-skill">
+                                Angular
+                            </span>
+
+                            <span class="cv-skill">
+                                PHP
+                            </span>
+
+                            <span class="cv-skill">
+                                APIs REST
+                            </span>
+
+                            <span class="cv-skill">
+                                Docker
+                            </span>
+
+                            <span class="cv-skill">
+                                MariaDB
+                            </span>
+
+                            <span class="cv-skill">
+                                Linux
+                            </span>
+
+                            <span class="cv-skill">
+                                Git
+                            </span>
+
+                        </div>
+
+
+                        <!--
+                    Cuando tengas el CV en PDF:
+
+                    1. Súbelo a:
+                       /opt/landing/cv.pdf
+
+                    2. Cambia el href por:
+                       href="/cv.pdf"
+                -->
+
+                        <a href="#" class="button button-primary">
+
+                            Descargar CV →
+
+                        </a>
+
+                    </div>
+
+
+
+                    <div class="code-card">
+
+                        <div class="code-header">
+
+                            <span class="code-dot"></span>
+                            <span class="code-dot"></span>
+                            <span class="code-dot"></span>
+
+                        </div>
+
+
+                        <pre><span class="code-keyword">developer</span> = {
+    <span class="code-keyword">company</span>: <span class="code-string">"Bitsmash"</span>,
+
+    <span class="code-keyword">speciality</span>:
+        <span class="code-string">"Web Development"</span>,
+
+    <span class="code-keyword">skills</span>: [
+        <span class="code-string">"Angular"</span>,
+        <span class="code-string">"PHP"</span>,
+        <span class="code-string">"REST APIs"</span>,
+        <span class="code-string">"Docker"</span>,
+        <span class="code-string">"Databases"</span>
+    ],
+
+    <span class="code-keyword">status</span>:
+        <span class="code-string">"Building"</span>
+};</pre>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+     CONTACTO
+========================= -->
+
+        <section id="contacto" class="cta">
+
+            <div class="container">
+
+
+                <div class="cta-box">
+
+
+                    <div class="section-label">
+                        ¿Tienes un proyecto?
+                    </div>
+
+
+                    <h2>
+                        Cuéntanos qué quieres construir.
+                    </h2>
+
+
+                    <p>
+
+                        Si tienes una idea, un proceso que quieres
+                        digitalizar o una aplicación que necesita
+                        mejorar, hablamos.
+
+                    </p>
+
+
+                    <a href="mailto:hola@bitsmash.ovh" class="button button-primary">
+
+                        Contactar con Bitsmash →
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+     FOOTER
+========================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-content">
+
+
+                <div>
+
+                    © 2026
+
+                    <span class="footer-logo">
+                        Bitsmash
+                    </span>.
+
+                    Desarrollo de aplicaciones web.
+
+                </div>
+
+
+                <div>
+                    bitsmash.ovh
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>
